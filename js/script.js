@@ -4,49 +4,50 @@ const card =
 {
     name: 'Bloodfire Colossus',
     lauchCost: ['6', 'R', 'R'],
-    totalCost: 10,
+    convertedManaCost: 8,
     TypeRow: {
         cardType: 'Creature',
         subType: 'Giant',
     },
     expansion: {
-        id: 9,
-        name: 'Espansione Miao',
-        number: 12,
-        totalNumber: 43,
+        id: 10,
+        name: 'Tenth Expansion',
+        number: 191,
+        totalNumber: '',
+        rarity: 'Rare',
 
     },
     textSection: {
         abilities: [
             {
-                description: 'blablabla 1 damage blabla',
-                lauchCost: ['R', 'T'],
+                description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
+                lauchCost: ['R'],
             },
             {
-                description: 'blablabla 7 damage ',
+                description: 'Rantolo di morte',
                 lauchCost: ['R', 'R', 'T'],
 
             }
         ],
         flavourText: {
-            quote: 'Lorem lorem lorem',
-            author: 'John Smith'
+            quote: 'It took all its strength to contain the fire within.',
+            author: ''
         }
     },
 
     illustration: {
         author: {
             id: 1,
-            name: 'Van Gogh',
+            name: 'Greg Staples',
         },
-        source: 'link qui'
+        source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129709&type=card'
     },
 
-    constitution: 13,
-    strength: 13,
+    constitution: 6,
+    strength: 6,
 
     background: {
-        color: 'blue',
+        color: 'red',
         source: 'link a sfondo qui',
     },
 
@@ -167,9 +168,10 @@ function generateCard(card) {
     if (card.textSection.abilities.length) {
         abilitiesContent = '<ul>';
         for (i = 0; i < card.textSection.abilities.length; i++) {
+
             const currentAbility = card.textSection.abilities[i];
-            abilitiesContent += `<li> Abilità: ${card.textSection.abilities[i].description} </li>`;
-            abilitiesContent += `<li> Costo: ${card.textSection.abilities[i].lauchCost} </li>`
+            abilitiesContent += `<li> Abilità: ${currentAbility.description} </li>`;
+            abilitiesContent += `<li> Costo: ${currentAbility.lauchCost} </li>`
 
         }
         abilitiesContent += '</ul>'
@@ -181,6 +183,8 @@ function generateCard(card) {
 
     //operatore ternario in alternativa a if else 
     const subType = card.TypeRow.subType ? ` - ${card.TypeRow.subType}` : ' ';
+    const flavourTextQuote = card.textSection.flavourText.quote ? `${card.textSection.flavourText.quote}` : ' No quotes provided';
+    const flavourTextAuthor = card.textSection.flavourText.author ? `${card.textSection.flavourText.author}` : ' ';
 
 
     const cardTemplate = `
@@ -190,6 +194,7 @@ function generateCard(card) {
     <li><strong>Main Info:</strong></li>
     <li>Nome: ${card.name}</li>
     <li>Costo lancio: ${card.lauchCost.join(', ')}</li>
+    <li>Costo Mana convertito: ${card.convertedManaCost} </li>
     <li>Tipo carta: ${card.TypeRow.cardType} ${subType}</li>
 
 
@@ -197,7 +202,8 @@ function generateCard(card) {
     <li><strong>Espansione:</strong> 
         <ul>
             <li>Nome Espansione: ${card.expansion.name} (ID:${card.expansion.id})</li>
-            <li>Carta n: ${card.expansion.number} su ${card.expansion.totalNumber}</li>
+            <li>Carta n: ${card.expansion.number}</li>
+            <li>Rarità: ${card.expansion.rarity}</li>
         </ul>
     </li>
 
@@ -210,8 +216,8 @@ function generateCard(card) {
           
           <li><strong>Testo di colore:</strong>
               <ul>
-                  <li>Citazione: ${card.textSection.flavourText.quote}</li>
-                  <li>Autore: ${card.textSection.flavourText.author}</li>
+                  <li>Citazione: ${flavourTextQuote}</li>
+                  <li>Autore: ${flavourTextAuthor}</li>
               </ul>
           </li>
       </ul>
@@ -222,7 +228,7 @@ function generateCard(card) {
     <li><strong>Illustrazione:</strong>
     <ul>
         <li>Autore: ${card.illustration.author.name} </li>
-        <li>Link: ${card.illustration.source}</li>
+        <li>Link: <a href="${card.illustration.source}"> Clicca qui</a></li>
 
     </ul>
     </li>
@@ -251,6 +257,7 @@ function generateCard(card) {
 
     return cardTemplate;
 }
+
 
 
 
