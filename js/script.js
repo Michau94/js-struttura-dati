@@ -398,6 +398,8 @@ filterButton.addEventListener('click', () => {
             case 'convertedManaCost':
 
 
+
+
                 if (currentCard[selectValue] == inputValue) {
 
                     filteredDeck.push(currentCard);
@@ -407,6 +409,12 @@ filterButton.addEventListener('click', () => {
 
             case 'cardType':
                 if (currentCard.TypeRow.cardType.includes(inputValue) || currentCard.TypeRow.subType.includes(inputValue)) {
+                    filteredDeck.push(currentCard);
+                }
+
+                break;
+            case 'rarity':
+                if (currentCard.expansion.rarity.includes(inputValue)) {
                     filteredDeck.push(currentCard);
                 }
 
@@ -430,7 +438,7 @@ filterButton.addEventListener('click', () => {
 
 
             default:
-                if (currentCard[selectValue].includes(inputValue)) {
+                if (currentCard[selectValue].includes(inputValue.toLowerCase()) || currentCard[selectValue].includes(inputValue)) {
 
                     filteredDeck.push(currentCard);
                 }
