@@ -330,6 +330,16 @@ const cardDisplay = document.getElementById('deck');
 renderDeck(fullDeck, cardDisplay);
 
 
+//# Funzioni aggiuntive
+
+//Capitalize
+
+const capitalize = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+
+}
+
+
 // #  FILTER SECTION
 
 // selezione elementi
@@ -359,8 +369,10 @@ selectField.addEventListener('change', () => {
 
 filterButton.addEventListener('click', () => {
 
-    const inputValue = inputField.value;
+    const inputValue = capitalize(inputField.value);
     const selectValue = selectField.value;
+
+    console.log(inputValue);
 
     if (selectValue === 'all') {
 
@@ -407,6 +419,15 @@ filterButton.addEventListener('click', () => {
 
                 break;
 
+            case 'illustration-author':
+                if (currentCard.illustration.author.name.includes(inputValue)) {
+                    filteredDeck.push(currentCard);
+                }
+
+                break;
+
+
+
 
             default:
                 if (currentCard[selectValue].includes(inputValue)) {
@@ -420,7 +441,6 @@ filterButton.addEventListener('click', () => {
     renderDeck(filteredDeck, cardDisplay);
 
 })
-
 
 
 
