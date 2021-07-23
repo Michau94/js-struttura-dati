@@ -31,6 +31,9 @@ ul {
     border: 1px solid black;
     border-radius: 20px;
     max-width: 30%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/card.jpg);
+    background-size: cover;
+    color: white;
 }
 
 .hidden {
