@@ -11,23 +11,36 @@
 
 <body>
 
-    <header class="p-15">
+    <header class="p-15 flex">
+        <div class="content flex">
 
-        <select id="param">
-            <option value="all" selected>tutte</option>
-            <option value="id">ID</option>
-            <option value="name">Nome</option>
-            <option value="launchCost">Launch Cost</option>
-            <option value="convertedManaCost">Costo Mana Convertito</option>
-            <option value="cardType">Tipo Carta</option>
-            <option value="rarity">Rarità</option>
-            <option value="constitution">Costituzione</option>
-            <option value="strength">Forza</option>
-            <option value="background-color">Colore Background</option>
-            <option value="illustration-author">Illustration Author</option>
-        </select>
-        <input type="text" placeholder="Scrivi Qui" id="input-search" class="hidden">
-        <button id="filter">Filtra</button>
+            <div class="filter flex">
+                <select id="param">
+                    <option value="all" selected>tutte</option>
+                    <option value="id">ID</option>
+                    <option value="name">Nome</option>
+                    <option value="launchCost">Launch Cost</option>
+                    <option value="convertedManaCost">Costo Mana Convertito</option>
+                    <option value="cardType">Tipo Carta</option>
+                    <option value="rarity">Rarità</option>
+                    <option value="constitution">Costituzione</option>
+                    <option value="strength">Forza</option>
+                    <option value="background-color">Colore Background</option>
+                    <option value="illustration-author">Illustration Author</option>
+                </select>
+            </div>
+
+            <div>
+                <input type="text" placeholder="Scrivi Qui" id="input-search" class="hidden">
+                <button id="filter">Filtra</button>
+            </div>
+        </div>
+
+        <div class="logo">
+
+            <img src="./img/magic_logo.png" alt="magic logo">
+
+        </div>
     </header>
 
 
