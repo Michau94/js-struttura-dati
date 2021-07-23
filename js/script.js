@@ -248,6 +248,7 @@ let generateCard = (card) => {
 
     
     <li><strong>Main Info:</strong></li>
+    <li>ID: ${card.id}</li>
     <li>Nome: ${card.name}</li>
     <li>Costo lancio: ${card.lauchCost.join(', ')}</li>
     <li>Costo Mana convertito: ${card.convertedManaCost} </li>
@@ -358,6 +359,8 @@ selectField.addEventListener('change', () => {
 
 })
 
+// filtro on click
+
 filterButton.addEventListener('click', () => {
 
     const inputValue = inputField.value;
@@ -369,11 +372,14 @@ filterButton.addEventListener('click', () => {
     }
 
 
+    // array di appoggio per risultato di ricerca
     const filteredDeck = [];
+
+    // se nessun filtro selezionato stampo tutto
     for (let i = 0; i < fullDeck.length; i++) {
         let currentCard = fullDeck[i];
 
-
+        // casistiche selezione filtri
         switch (selectValue) {
             case 'id':
             case 'constitution':
@@ -387,7 +393,7 @@ filterButton.addEventListener('click', () => {
                 break;
 
             case 'cardType':
-                if (currentCard.TypeRow.cardType.includes(inputValue)) {
+                if (currentCard.TypeRow.cardType.includes(inputValue) || currentCard.TypeRow.subType.includes(inputValue)) {
                     filteredDeck.push(currentCard);
                 }
 
