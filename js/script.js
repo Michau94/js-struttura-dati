@@ -3,7 +3,7 @@
 const card =
 {
     name: 'Bloodfire Colossus',
-    lauchCost: ['6', 'R', 'R'],
+    launchCost: ['6', 'R', 'R'],
     convertedManaCost: 8,
     TypeRow: {
         cardType: 'Creature',
@@ -20,11 +20,11 @@ const card =
     abilities: [
         {
             description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
-            lauchCost: ['R'],
+            launchCost: ['R'],
         },
         {
             description: 'Rantolo di morte',
-            lauchCost: ['R', 'R', 'T'],
+            launchCost: ['R', 'R', 'T'],
 
         }
     ],
@@ -60,7 +60,7 @@ const fullDeck = [
     {
         id: 1,
         name: 'Bloodfire Colossus',
-        lauchCost: ['6', 'R', 'R'],
+        launchCost: ['6', 'R', 'R'],
         convertedManaCost: 8,
         TypeRow: {
             cardType: 'Creature',
@@ -77,11 +77,11 @@ const fullDeck = [
         abilities: [
             {
                 description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
-                lauchCost: ['R'],
+                launchCost: ['R'],
             },
             {
                 description: 'Rantolo di morte',
-                lauchCost: ['R', 'R', 'T'],
+                launchCost: ['R', 'R', 'T'],
 
             }
         ],
@@ -113,7 +113,7 @@ const fullDeck = [
     {
         id: 2,
         name: 'Abzan Battle Priest',
-        lauchCost: ['3', 'W'],
+        launchCost: ['3', 'W'],
         convertedManaCost: 4,
         TypeRow: {
             cardType: 'Creature',
@@ -130,7 +130,7 @@ const fullDeck = [
         abilities: [
             {
                 description: "Outlast: Put a +1/+1 counter on this creature. Outlast only as a sorcery.Each creature you control with a + 1 / +1 counter on it has lifelink.",
-                lauchCost: ['W', 'T'],
+                launchCost: ['W', 'T'],
             }
 
         ],
@@ -162,7 +162,7 @@ const fullDeck = [
     {
         id: 3,
         name: 'Adder-Staff Boggart',
-        lauchCost: ['1', 'R'],
+        launchCost: ['1', 'R'],
         convertedManaCost: 2,
         TypeRow: {
             cardType: 'Creature',
@@ -179,7 +179,7 @@ const fullDeck = [
         abilities: [
             {
                 description: "When Adder-Staff Boggart enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Adder-Staff Boggart. (Each clashing player reveals the top card of their library, then puts that card on the top or bottom. A player wins if their card had a higher mana value.)",
-                lauchCost: [],
+                launchCost: [],
 
             }
         ],
@@ -223,7 +223,7 @@ let generateCard = (card) => {
 
             const currentAbility = card.abilities[i];
             abilitiesContent += `<li> Abilità: ${currentAbility.description} </li>`;
-            abilitiesContent += `<li> Costo: ${currentAbility.lauchCost} </li>`
+            abilitiesContent += `<li> Costo: ${currentAbility.launchCost} </li>`
 
         }
         abilitiesContent += '</ul>'
@@ -246,7 +246,7 @@ let generateCard = (card) => {
     <li><strong>Main Info:</strong></li>
     <li>ID: ${card.id}</li>
     <li>Nome: ${card.name}</li>
-    <li>Costo lancio: ${card.lauchCost.join(', ')}</li>
+    <li>Costo lancio: ${card.launchCost.join(', ')}</li>
     <li>Costo Mana convertito: ${card.convertedManaCost} </li>
     <li>Tipo carta: ${card.TypeRow.cardType} ${subType}</li>
 
@@ -393,10 +393,6 @@ filterButton.addEventListener('click', () => {
 
                 break;
 
-
-
-
-
             case 'cardType':
                 if (currentCard.TypeRow.cardType.includes(inputValue) || currentCard.TypeRow.subType.includes(inputValue)) {
                     filteredDeck.push(currentCard);
@@ -421,10 +417,7 @@ filterButton.addEventListener('click', () => {
         }
     }
 
-
     renderDeck(filteredDeck, cardDisplay);
-
-
 
 })
 
