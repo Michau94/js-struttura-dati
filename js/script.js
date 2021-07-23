@@ -112,48 +112,44 @@ const fullDeck = [
     },
     {
         id: 2,
-        name: 'Grizzly Bear',
-        lauchCost: ['8', 'R'],
-        convertedManaCost: 9,
+        name: 'Abzan Battle Priest',
+        lauchCost: ['3', 'W'],
+        convertedManaCost: 4,
         TypeRow: {
             cardType: 'Creature',
-            subType: 'Ninja',
+            subType: 'Human Cleric',
         },
         expansion: {
-            id: 10,
-            name: 'Tenth Expansion',
-            number: 150,
-            rarity: 'Rare',
+            id: 45,
+            name: 'Khans of Tarkir',
+            number: 1,
+            rarity: 'Uncommon',
 
         },
 
         abilities: [
             {
-                description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
-                lauchCost: ['R'],
-            },
-            {
-                description: 'Rantolo di morte',
-                lauchCost: ['R', 'R', 'T'],
-
+                description: "Outlast: Put a +1/+1 counter on this creature. Outlast only as a sorcery.Each creature you control with a + 1 / +1 counter on it has lifelink.",
+                lauchCost: ['W', 'T'],
             }
+
         ],
         flavourText: {
-            quote: 'Miao bau frr',
-            author: ''
+            quote: 'Ovunque io vada, gli antenati sono con me.',
+            author: 'Abzan'
         },
 
 
         illustration: {
             author: {
-                id: 1,
-                name: 'Greg Staples',
+                id: 2,
+                name: 'Chris Rahn',
             },
-            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129709&type=card'
+            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=387811&type=card'
         },
 
-        constitution: 13,
-        strength: 14,
+        constitution: 3,
+        strength: 2,
 
         background: {
             color: 'black',
@@ -165,30 +161,30 @@ const fullDeck = [
     },
     {
         id: 3,
-        name: 'Micio Miao',
-        lauchCost: ['2', 'R', 'R'],
-        convertedManaCost: 4,
+        name: 'Adder-Staff Boggart',
+        lauchCost: ['1', 'R'],
+        convertedManaCost: 2,
         TypeRow: {
             cardType: 'Creature',
-            subType: 'Gatto',
+            subType: 'Goblin Warrior',
         },
         expansion: {
             id: 10,
-            name: 'Tenth Expansion',
-            number: 78,
-            rarity: 'Rare',
+            name: 'Lowryn',
+            number: 148,
+            rarity: 'Common',
 
         },
 
         abilities: [
             {
-                description: 'Rantolo di morte',
-                lauchCost: ['R', 'R', 'T'],
+                description: "When Adder-Staff Boggart enters the battlefield, clash with an opponent. If you win, put a +1/+1 counter on Adder-Staff Boggart. (Each clashing player reveals the top card of their library, then puts that card on the top or bottom. A player wins if their card had a higher mana value.)",
+                lauchCost: [],
 
             }
         ],
         flavourText: {
-            quote: 'Meow',
+            quote: '',
             author: ''
         },
 
@@ -196,13 +192,13 @@ const fullDeck = [
         illustration: {
             author: {
                 id: 1,
-                name: 'Greg Staples',
+                name: 'Jeff Miracola',
             },
-            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129709&type=card'
+            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=155660&type=card'
         },
 
-        constitution: 6,
-        strength: 6,
+        constitution: 2,
+        strength: 1,
 
         background: {
             color: 'red',
@@ -372,6 +368,9 @@ filterButton.addEventListener('click', () => {
     }
 
 
+
+
+
     // array di appoggio per risultato di ricerca
     const filteredDeck = [];
 
@@ -385,6 +384,8 @@ filterButton.addEventListener('click', () => {
             case 'constitution':
             case 'strength':
             case 'convertedManaCost':
+
+
                 if (currentCard[selectValue] == inputValue) {
 
                     filteredDeck.push(currentCard);
@@ -392,8 +393,19 @@ filterButton.addEventListener('click', () => {
 
                 break;
 
+
+
+
+
             case 'cardType':
                 if (currentCard.TypeRow.cardType.includes(inputValue) || currentCard.TypeRow.subType.includes(inputValue)) {
+                    filteredDeck.push(currentCard);
+                }
+
+                break;
+
+            case 'background-color':
+                if (currentCard.background.color.includes(inputValue)) {
                     filteredDeck.push(currentCard);
                 }
 
@@ -406,10 +418,7 @@ filterButton.addEventListener('click', () => {
                     filteredDeck.push(currentCard);
                 }
                 break;
-
         }
-
-
     }
 
 
