@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+/* utils */
+
+.p-15 {
+    padding: 15px;
+}
+
 .flex {
     display: flex;
     flex-wrap: wrap;
@@ -24,4 +30,8 @@ ul {
 .card {
     border: 1px solid black;
     border-radius: 20px;
+}
+
+.hidden {
+    display: none;
 }

@@ -215,132 +215,9 @@ const fullDeck = [
 
 ]
 
+// funzione per generare carta singola passando obj card
 
-// stampa deck su pagina (funzione)
-
-const renderDeck = (deck, targetElement) => {
-
-    let deckRender = '';
-    for (let i = 0; i < deck.length; i++) {
-        let currentCard = deck[i];
-
-        deckRender += '<div class="card">' + generateCard(fullDeck[i]) + '</div>';
-
-    }
-
-    //stampa deck su pagina
-    targetElement.innerHTML = deckRender;
-
-}
-
-// elemento per stampa
-
-const cardDisplay = document.getElementById('deck');
-
-renderDeck(fullDeck, cardDisplay);
-
-
-
-
-
-
-
-
-
-//! Commentato perché fatta funzione 
-/* 
-let abilitiesContent = 'Nessuna abilità';
-if (card.textSection.abilities.length) {
-    abilitiesContent = '<ul>';
-    for (i = 0; i < card.textSection.abilities.length; i++) {
-        const currentAbility = card.textSection.abilities[i];
-        abilitiesContent += `<li> Abilità: ${card.textSection.abilities[i].description} </li>`;
-        abilitiesContent += `<li> Costo: ${card.textSection.abilities[i].lauchCost} </li>`
-
-    }
-    abilitiesContent += '</ul>'
-}
-
-
-console.log(abilitiesContent);
-
-
-//operatore ternario in alternativa a if else 
-const subType = card.TypeRow.subType ? ` - ${card.TypeRow.subType}` : ' ';
-
-
-const cardTemplate = `
-<ul>
-
-    
-    <li><strong>Main Info:</strong></li>
-    <li>Nome: ${card.name}</li>
-    <li>Costo lancio: ${card.lauchCost.join(', ')}</li>
-    <li>Tipo carta: ${card.TypeRow.cardType} ${subType}</li>
-
-
-    
-    <li><strong>Espansione:</strong> 
-        <ul>
-            <li>Nome Espansione: ${card.expansion.name} (ID:${card.expansion.id})</li>
-            <li>Carta n: ${card.expansion.number} su ${card.expansion.totalNumber}</li>
-        </ul>
-    </li>
-
-
-   <li> <strong>Text Section</strong>
-      <ul>
-          
-          <li><strong>Abilities</strong>${abilitiesContent}
-          </li>
-          
-          <li><strong>Testo di colore:</strong>
-              <ul>
-                  <li>Citazione: ${card.textSection.flavourText.quote}</li>
-                  <li>Autore: ${card.textSection.flavourText.author}</li>
-              </ul>
-          </li>
-      </ul>
-   </li>
-
-
-    
-    <li><strong>Illustrazione:</strong>
-    <ul>
-        <li>Autore: ${card.illustration.author.name} </li>
-        <li>Link: ${card.illustration.source}</li>
-
-    </ul>
-    </li>
-
-   
-
-    <li>Costituzione: ${card.constitution}</li>
-    <li>Forza: ${card.strength}</li>
-
-    <li><strong>Background:</strong>
-        <ul>
-            <li>Colore: ${card.background.color}</li>
-            <li>Link: ${card.background.source}</li>
-
-        </ul>
-
-    </li>
-
-    <li>Colore Bordo: ${card.borderColor}</li>
-
-</ul>`;
-
-
-*/
-
-
-
-
-
-// funzione per generare carta passando obj card
-
-function generateCard(card) {
+let generateCard = (card) => {
 
 
     let abilitiesContent = 'Nessuna abilità';
@@ -431,6 +308,188 @@ function generateCard(card) {
 
     return cardTemplate;
 }
+
+// stampa deck su pagina (funzione)
+
+const renderDeck = (deck, targetElement) => {
+
+    let deckRender = '';
+    for (let i = 0; i < deck.length; i++) {
+        let currentCard = deck[i];
+
+        deckRender += '<div class="card">' + generateCard(currentCard) + '</div>';
+
+    }
+
+    //stampa deck su pagina
+    targetElement.innerHTML = deckRender;
+
+}
+
+// elemento per stampa
+
+const cardDisplay = document.getElementById('deck');
+
+renderDeck(fullDeck, cardDisplay);
+
+
+// #  FILTER SECTION
+
+// selezione elementi
+
+const inputField = document.getElementById('input-search');
+const selectField = document.getElementById('param');
+const filterButton = document.getElementById('filter');
+
+
+
+
+// scomparsa campo testo se tutte devono essere stampate
+selectField.addEventListener('change', () => {
+
+    const currentValue = selectField.value;
+
+    if (currentValue !== 'all') {
+        inputField.classList.remove('hidden');
+    } else {
+        inputField.classList.add('hidden');
+
+    }
+
+})
+
+filterButton.addEventListener('click', () => {
+    const inputValue = inputField.value;
+    const selectValue = selectField.value;
+
+    if (selectValue === 'all') {
+
+        renderDeck(fullDeck, cardDisplay)
+    }
+
+
+    const filteredDeck = [];
+    for (let i = 0; i < fullDeck.length; i++) {
+        let currentCard = fullDeck[i];
+
+        if (currentCard[selectValue] == inputValue) {
+
+            filteredDeck.push(currentCard);
+        }
+
+
+    }
+
+
+    renderDeck(filteredDeck, cardDisplay);
+
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! Commentato perché fatta funzione 
+/*
+let abilitiesContent = 'Nessuna abilità';
+if (card.textSection.abilities.length) {
+    abilitiesContent = '<ul>';
+    for (i = 0; i < card.textSection.abilities.length; i++) {
+        const currentAbility = card.textSection.abilities[i];
+        abilitiesContent += `<li> Abilità: ${card.textSection.abilities[i].description} </li>`;
+        abilitiesContent += `<li> Costo: ${card.textSection.abilities[i].lauchCost} </li>`
+
+    }
+    abilitiesContent += '</ul>'
+}
+
+
+console.log(abilitiesContent);
+
+
+//operatore ternario in alternativa a if else
+const subType = card.TypeRow.subType ? ` - ${card.TypeRow.subType}` : ' ';
+
+
+const cardTemplate = `
+<ul>
+
+
+    <li><strong>Main Info:</strong></li>
+    <li>Nome: ${card.name}</li>
+    <li>Costo lancio: ${card.lauchCost.join(', ')}</li>
+    <li>Tipo carta: ${card.TypeRow.cardType} ${subType}</li>
+
+
+
+    <li><strong>Espansione:</strong>
+        <ul>
+            <li>Nome Espansione: ${card.expansion.name} (ID:${card.expansion.id})</li>
+            <li>Carta n: ${card.expansion.number} su ${card.expansion.totalNumber}</li>
+        </ul>
+    </li>
+
+
+   <li> <strong>Text Section</strong>
+      <ul>
+
+          <li><strong>Abilities</strong>${abilitiesContent}
+          </li>
+
+          <li><strong>Testo di colore:</strong>
+              <ul>
+                  <li>Citazione: ${card.textSection.flavourText.quote}</li>
+                  <li>Autore: ${card.textSection.flavourText.author}</li>
+              </ul>
+          </li>
+      </ul>
+   </li>
+
+
+
+    <li><strong>Illustrazione:</strong>
+    <ul>
+        <li>Autore: ${card.illustration.author.name} </li>
+        <li>Link: ${card.illustration.source}</li>
+
+    </ul>
+    </li>
+
+
+
+    <li>Costituzione: ${card.constitution}</li>
+    <li>Forza: ${card.strength}</li>
+
+    <li><strong>Background:</strong>
+        <ul>
+            <li>Colore: ${card.background.color}</li>
+            <li>Link: ${card.background.source}</li>
+
+        </ul>
+
+    </li>
+
+    <li>Colore Bordo: ${card.borderColor}</li>
+
+</ul>`;
+
+
+*/
+
+
+
+
+
 
 
 

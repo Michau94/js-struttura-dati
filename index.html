@@ -10,8 +10,22 @@
 </head>
 
 <body>
+    <div class="p-15">
+        <select id="param">
+            <option value="all" selected>tutte</option>
+            <option value="id">ID</option>
+            <option value="name">Nome</option>
+            <option value="convertedManaCost">Costo Mana</option>
+            <option value="cardType">Tipo Carta</option>
+            <option value="constitution">Costituzione</option>
+            <option value="strength">Forza</option>
+        </select>
+        <input type="text" placeholder="Scrivi Qui" id="input-search" class="hidden">
+        <button id="filter">Filtra</button>
+    </div>
 
 
+    <br />
     <div id="deck" class="flex">
 
     </div>
