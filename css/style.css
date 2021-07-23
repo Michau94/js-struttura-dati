@@ -17,23 +17,32 @@
     flex-wrap: wrap;
 }
 
+/* header */
+
+header {
+    background-color: black;
+}
+
+/* main */
+
 ul {
     list-style-position: inside;
     padding-left: 15px;
 }
 
-#card {
-    border: 1px solid black;
-    border-radius: 20px;
+body {
+    background-image: url(../img/graybg.jpg);
 }
 
 .card {
     border: 1px solid black;
     border-radius: 20px;
-    max-width: 30%;
+    max-width: 400px;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/card.jpg);
     background-size: cover;
     color: white;
+    margin: 10px;
+    padding: 10px;
 }
 
 .hidden {
