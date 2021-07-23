@@ -13,27 +13,26 @@ const card =
         id: 10,
         name: 'Tenth Expansion',
         number: 191,
-        totalNumber: '',
         rarity: 'Rare',
 
     },
-    textSection: {
-        abilities: [
-            {
-                description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
-                lauchCost: ['R'],
-            },
-            {
-                description: 'Rantolo di morte',
-                lauchCost: ['R', 'R', 'T'],
 
-            }
-        ],
-        flavourText: {
-            quote: 'It took all its strength to contain the fire within.',
-            author: ''
+    abilities: [
+        {
+            description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
+            lauchCost: ['R'],
+        },
+        {
+            description: 'Rantolo di morte',
+            lauchCost: ['R', 'R', 'T'],
+
         }
+    ],
+    flavourText: {
+        quote: 'It took all its strength to contain the fire within.',
+        author: ''
     },
+
 
     illustration: {
         author: {
@@ -56,16 +55,196 @@ const card =
 }
 
 
-console.table(card);
+// mazzo carte Magic ( 3 oggetti)
+const fullDeck = [
+    {
+        id: 1,
+        name: 'Bloodfire Colossus',
+        lauchCost: ['6', 'R', 'R'],
+        convertedManaCost: 8,
+        TypeRow: {
+            cardType: 'Creature',
+            subType: 'Giant',
+        },
+        expansion: {
+            id: 10,
+            name: 'Tenth Expansion',
+            number: 191,
+            rarity: 'Rare',
+
+        },
+
+        abilities: [
+            {
+                description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
+                lauchCost: ['R'],
+            },
+            {
+                description: 'Rantolo di morte',
+                lauchCost: ['R', 'R', 'T'],
+
+            }
+        ],
+        flavourText: {
+            quote: 'It took all its strength to contain the fire within.',
+            author: ''
+        },
+
+
+        illustration: {
+            author: {
+                id: 1,
+                name: 'Greg Staples',
+            },
+            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129709&type=card'
+        },
+
+        constitution: 6,
+        strength: 6,
+
+        background: {
+            color: 'red',
+            source: 'link a sfondo qui',
+        },
+
+        borderColor: '#FFF',
+
+    },
+    {
+        id: 2,
+        name: 'Grizzly Bear',
+        lauchCost: ['8', 'R'],
+        convertedManaCost: 9,
+        TypeRow: {
+            cardType: 'Creature',
+            subType: 'Ninja',
+        },
+        expansion: {
+            id: 10,
+            name: 'Tenth Expansion',
+            number: 150,
+            rarity: 'Rare',
+
+        },
+
+        abilities: [
+            {
+                description: 'Sacrifice Bloodfire Colossus: It deals 6 damage to each creature and each player.',
+                lauchCost: ['R'],
+            },
+            {
+                description: 'Rantolo di morte',
+                lauchCost: ['R', 'R', 'T'],
+
+            }
+        ],
+        flavourText: {
+            quote: 'Miao bau frr',
+            author: ''
+        },
+
+
+        illustration: {
+            author: {
+                id: 1,
+                name: 'Greg Staples',
+            },
+            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129709&type=card'
+        },
+
+        constitution: 13,
+        strength: 14,
+
+        background: {
+            color: 'black',
+            source: 'link a sfondo qui',
+        },
+
+        borderColor: '#FFF',
+
+    },
+    {
+        id: 3,
+        name: 'Micio Miao',
+        lauchCost: ['2', 'R', 'R'],
+        convertedManaCost: 4,
+        TypeRow: {
+            cardType: 'Creature',
+            subType: 'Gatto',
+        },
+        expansion: {
+            id: 10,
+            name: 'Tenth Expansion',
+            number: 78,
+            rarity: 'Rare',
+
+        },
+
+        abilities: [
+            {
+                description: 'Rantolo di morte',
+                lauchCost: ['R', 'R', 'T'],
+
+            }
+        ],
+        flavourText: {
+            quote: 'Meow',
+            author: ''
+        },
+
+
+        illustration: {
+            author: {
+                id: 1,
+                name: 'Greg Staples',
+            },
+            source: 'https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=129709&type=card'
+        },
+
+        constitution: 6,
+        strength: 6,
+
+        background: {
+            color: 'red',
+            source: 'link a sfondo qui',
+        },
+
+        borderColor: '#FFF',
+
+    }
+
+]
+
+
+// stampa deck su pagina (funzione)
+
+const renderDeck = (deck, targetElement) => {
+
+    let deckRender = '';
+    for (let i = 0; i < deck.length; i++) {
+        let currentCard = deck[i];
+
+        deckRender += '<div class="card">' + generateCard(fullDeck[i]) + '</div>';
+
+    }
+
+    //stampa deck su pagina
+    targetElement.innerHTML = deckRender;
+
+}
 
 // elemento per stampa
 
-const cardDisplay = document.getElementById('card');
+const cardDisplay = document.getElementById('deck');
 
-// stampa su html
+renderDeck(fullDeck, cardDisplay);
 
 
-cardDisplay.innerHTML = generateCard(card);
+
+
+
+
+
 
 
 //! Commentato perché fatta funzione 
@@ -165,11 +344,11 @@ function generateCard(card) {
 
 
     let abilitiesContent = 'Nessuna abilità';
-    if (card.textSection.abilities.length) {
+    if (card.abilities.length) {
         abilitiesContent = '<ul>';
-        for (i = 0; i < card.textSection.abilities.length; i++) {
+        for (i = 0; i < card.abilities.length; i++) {
 
-            const currentAbility = card.textSection.abilities[i];
+            const currentAbility = card.abilities[i];
             abilitiesContent += `<li> Abilità: ${currentAbility.description} </li>`;
             abilitiesContent += `<li> Costo: ${currentAbility.lauchCost} </li>`
 
@@ -183,8 +362,8 @@ function generateCard(card) {
 
     //operatore ternario in alternativa a if else 
     const subType = card.TypeRow.subType ? ` - ${card.TypeRow.subType}` : ' ';
-    const flavourTextQuote = card.textSection.flavourText.quote ? `${card.textSection.flavourText.quote}` : ' No quotes provided';
-    const flavourTextAuthor = card.textSection.flavourText.author ? `${card.textSection.flavourText.author}` : ' ';
+    const flavourTextQuote = card.flavourText.quote ? `${card.flavourText.quote}` : ' No quotes provided';
+    const flavourTextAuthor = card.flavourText.author ? `${card.flavourText.author}` : ' ';
 
 
     const cardTemplate = `
@@ -206,22 +385,17 @@ function generateCard(card) {
             <li>Rarità: ${card.expansion.rarity}</li>
         </ul>
     </li>
-
-
-   <li> <strong>Text Section</strong>
-      <ul>
+    
+    <li><strong>Abilities</strong>${abilitiesContent}
+    </li>
           
-          <li><strong>Abilities</strong>${abilitiesContent}
-          </li>
-          
-          <li><strong>Testo di colore:</strong>
-              <ul>
-                  <li>Citazione: ${flavourTextQuote}</li>
-                  <li>Autore: ${flavourTextAuthor}</li>
-              </ul>
-          </li>
-      </ul>
-   </li>
+    <li><strong>Testo di colore:</strong>
+        <ul>
+                <li>Citazione: ${flavourTextQuote}</li>
+                <li>Autore: ${flavourTextAuthor}</li>
+        </ul>
+    </li>
+   
 
 
     
