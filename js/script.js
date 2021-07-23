@@ -359,6 +359,7 @@ selectField.addEventListener('change', () => {
 })
 
 filterButton.addEventListener('click', () => {
+
     const inputValue = inputField.value;
     const selectValue = selectField.value;
 
@@ -372,9 +373,34 @@ filterButton.addEventListener('click', () => {
     for (let i = 0; i < fullDeck.length; i++) {
         let currentCard = fullDeck[i];
 
-        if (currentCard[selectValue] == inputValue) {
 
-            filteredDeck.push(currentCard);
+        switch (selectValue) {
+            case 'id':
+            case 'constitution':
+            case 'strength':
+            case 'convertedManaCost':
+                if (currentCard[selectValue] == inputValue) {
+
+                    filteredDeck.push(currentCard);
+                }
+
+                break;
+
+            case 'cardType':
+                if (currentCard.TypeRow.cardType.includes(inputValue)) {
+                    filteredDeck.push(currentCard);
+                }
+
+                break;
+
+
+            default:
+                if (currentCard[selectValue].includes(inputValue)) {
+
+                    filteredDeck.push(currentCard);
+                }
+                break;
+
         }
 
 
