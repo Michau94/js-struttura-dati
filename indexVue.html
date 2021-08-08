@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic Cards </title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css'
+        integrity='sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA=='
+        crossorigin='anonymous' />
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div id="root">
+
+        <header class="p-15 flex">
+            <div class="content flex">
+
+                <div class="filter flex">
+                    <select v-model="filterParam" id="param">
+                        <option value="all" selected>tutte</option>
+                        <option value="id">ID</option>
+                        <option value="name">Nome</option>
+                        <option value="launchCost">Launch Cost</option>
+                        <option value="convertedManaCost">Costo Mana Convertito</option>
+                        <option value="cardType">Tipo Carta</option>
+                        <option value="rarity">Rarità</option>
+                        <option value="constitution">Costituzione</option>
+                        <option value="strength">Forza</option>
+                        <option value="background-color">Colore Background</option>
+                        <option value="illustration-author">Illustration Author</option>
+                    </select>
+                </div>
+
+                <div>
+                    <input v-model="searchTab" type="text" placeholder="Scrivi Qui" id="input-search" class="">
+                </div>
+            </div>
+
+            <div class="logo">
+
+                <img src="./img/magic_logo.png" alt="magic logo">
+
+            </div>
+        </header>
+
+
+
+        <br />
+        <div id="deck" class="flex p-15">
+            <div class="row">
+
+                <div v-for="card in filtered" class="card">
+
+                    <ul>
+                        <li><strong>Main Info:</strong></li>
+                        <li>ID: {{ card.id }}</li>
+                        <li>Nome: {{card.name}}</li>
+                        <li>Costo lancio: {{card.launchCost.join(', ')}}</li>
+                        <li>Costo Mana convertito: {{card.convertedManaCost}} </li>
+                        <li>Tipo carta: {{card.TypeRow.cardType}} {{ card.TypeRow.subType}}</li>
+                        <li><strong>Espansione:</strong>
+                            <ul>
+                                <li>Nome Espansione: {{card.expansion.name}} (ID:{{card.expansion.id}})</li>
+                                <li>Carta n: {{ card.expansion.number }}</li>
+                                <li>Rarità: {{ card.expansion.rarity }}</li>
+                            </ul>
+                        </li>
+                        <li><strong>Abilities</strong>
+                        <li v-for="ability in card.abilities"> Description: {{ ability.description }} {{
+                            ability.launchCost}} </li>
+                        </li>
+                        <li v-if="card.flavourText.quote"><strong>Testo di colore:</strong>
+                            <ul>
+                                <li>Citazione: {{ card.flavourText.quote }}</li>
+                                <li>Autore: {{ card.flavourText.author }}</li>
+                            </ul>
+                        </li>
+                        <li><strong>Illustrazione:</strong>
+                            <ul>
+                                <li>Autore: {{ card.illustration.author.name }} </li>
+                                <li>Link: <a :href="card.illustration.source"> Clicca qui</a></li>
+                            </ul>
+                        </li>
+                        <li>Costituzione: {{ card.constitution }}</li>
+                        <li>Forza: {{ card.strength }}</li>
+                        <li><strong>Background:</strong>
+                            <ul>
+                                <li>Colore: {{ card.background.color }}</li>
+                                <li>Link: {{ card.background.source }}</li>
+                            </ul>
+                        </li>
+                        <li>Colore Bordo: {{ card.borderColor }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <script src="./js/VueVersion.js"></script>
+</body>
+
+</html>
